@@ -1,0 +1,36 @@
+---
+- name: build docker images locally
+  gather_facts: no
+  hosts: local
+  tasks:
+    - name: build weather image
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.weather }}:latest"
+        build:
+          path: '../weather'
+        source: build
+        state: present
+
+    - name: build currency image
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.currency }}:latest"
+        build:
+          path: '../currency'
+        source: build
+        state: present
+
+    - name: build prediction image
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.prediction }}:latest"
+        build:
+          path: '../prediction'
+        source: build
+        state: present
+
+    - name: build eureka image
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.eureka }}:latest"
+        build:
+          path: '../eureka'
+        source: build
+        state: present

@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  eureka:
+    image: "{{ images_prefix }}/{{ services.eureka }}:latest"
+    ports:
+      - 8761:8761
+
+  currency:
+    image: "{{ images_prefix }}/{{ services.currency }}:latest"
+    ports:
+      - 8081:8081
+    depends_on:
+      - eureka
+
+  weather:
+    image: "{{ images_prefix }}/{{ services.weather }}:latest"
+    ports:
+      - 8082:8082
+    depends_on:
+      - eureka
+
+  prediction:
+    image: "{{ images_prefix }}/{{ services.prediction }}:latest"
+    ports:
+      - 8083:8083
+    depends_on:
+      - eureka
+      - currency
+      - weather

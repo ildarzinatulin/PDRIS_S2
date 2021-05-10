@@ -1,0 +1,20 @@
+---
+- name: run services
+  hosts: Ubuntu
+  tasks:
+    - debug:
+        var: output
+
+    - name: stop services
+      docker_compose:
+        project_src: "{{ deploy_path }}"
+        files:
+          - docker-compose.yml
+        state: absent
+
+    - name: run services
+      docker_compose:
+        project_src: "{{ deploy_path }}"
+        files:
+          - docker-compose.yml
+        state: present

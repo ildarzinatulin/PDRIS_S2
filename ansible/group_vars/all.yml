@@ -1,0 +1,9 @@
+---
+images_prefix: zinatulin
+deploy_path: /edu/zinatulin
+
+services:
+  eureka: "eureka"
+  weather: "weather"
+  currency: "currency"
+  prediction: "prediction"

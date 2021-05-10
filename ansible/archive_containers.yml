@@ -1,0 +1,55 @@
+---
+- hosts: local
+  gather_facts: no
+  tasks:
+    - name: archive container image as a tarball [weather]
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.weather }}:latest"
+        archive_path: "/tmp/{{ services.weather }}.tar"
+        source: pull
+        state: present
+
+    - name: fetch archived image [weather]
+      fetch:
+        src: "/tmp/{{ services.weather }}.tar"
+        dest: "./{{ services.weather }}.tar"
+        flat: true
+
+    - name: archive container image as a tarball [currency]
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.currency }}:latest"
+        archive_path: "/tmp/{{ services.currency }}.tar"
+        source: pull
+        state: present
+
+    - name: fetch archived image [currency]
+      fetch:
+        src: "/tmp/{{ services.currency }}.tar"
+        dest: "./{{ services.currency }}.tar"
+        flat: true
+
+    - name: archive container image as a tarball [prediction]
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.prediction }}:latest"
+        archive_path: "/tmp/{{ services.prediction }}.tar"
+        source: pull
+        state: present
+
+    - name: fetch archived image[prediction]
+      fetch:
+        src: "/tmp/{{ services.prediction }}.tar"
+        dest: "./{{ services.prediction }}.tar"
+        flat: true
+
+    - name: archive container image as a tarball [eureka]
+      docker_image:
+        name: "{{ images_prefix }}/{{ services.eureka }}:latest"
+        archive_path: "/tmp/{{ services.eureka }}.tar"
+        source: pull
+        state: present
+
+    - name: fetch archived image [eureka]
+      fetch:
+        src: "/tmp/{{ services.eureka }}.tar"
+        dest: "./{{ services.eureka }}.tar"
+        flat: true
