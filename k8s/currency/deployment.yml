@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: currency
+  template:
+    metadata:
+      name: currency
+      labels:
+        app: currency
+    spec:
+      containers:
+        - name: currency
+          image: currency
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+              name: currency

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      name: eureka
+      labels:
+        app: eureka
+    spec:
+      containers:
+        - name: eureka
+          image: eureka
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8761
+              name: eureka
